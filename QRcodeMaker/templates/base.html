@@ -1,0 +1,62 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}{% endblock title %}</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
+        <link href='https://fonts.googleapis.com/css?family=Ysabeau Infant' rel='stylesheet'>
+        {% block links %}
+        
+        {% endblock links %}
+    </head>
+    <body>
+        <header>
+            <div id="header-start">
+                <img src="{% static 'images/Logo.png' %}" alt="">
+                <a href="/">Головна</a>
+                <a href="/qrcodes/create_qrcode">Створити QR код</a>
+                <a href="/qrcodes/my_qrcodes">Мої QR коди</a>
+                <a href="/contacts">Контакти</a>
+            </div>
+            <div id="header-end">
+                <a id="user-name" href="{% url 'account' %}"> {{ user.username }} </a>
+                {% if user.is_authenticated %}
+                    <a class="user-link" href="{% url 'logout' %}">Вийти</a>
+                {% else %}
+                    <a class="user-link" href="{% url 'login' %}">Увійти</a>
+                {% endif %}
+                <img src="{% static 'images/Account.png' %}" alt="">
+            </div>
+        </header>
+
+        {% block content %}
+        
+        {% endblock content %}
+
+
+        <footer>
+            <div id="footer-placer1">
+                <img id="logo" src="{% static 'images/Logo.png' %}" alt="">
+                <div id="footer-links">
+                    <h1>QRcodeMaker</h1>
+                    <a href="/qrcodes/create_qrcode">Створити qr код</a>
+                    <a href="/contacts">Контакти</a>
+                </div>
+            </div>
+            <div id="footer-placer2">
+                <h1>Як з нами зв'язатись?</h1>
+                <div id="contacts">
+                    <img src="{% static 'images/Instagram.png' %}" alt="">
+                    <img src="{% static 'images/WhatsApp.png' %}" alt="">
+                </div>
+            </div>
+            
+        </footer>
+        {% block scripts %}
+        
+        {% endblock scripts %}
+    </body>
+</html>
